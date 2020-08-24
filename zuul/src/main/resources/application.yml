@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: zuul
+
+
+server:
+  port: 9999
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/,http://localhost:1112/eureka/
+
+zuul:
+  routes:
+    feign-api:
+      path: /test-zuul/**
+      serviceId: feign
+    hello-api:
+      path: /test-hello/**
+      serviceId: hello
+  ignored-patterns: /**/hello1/**
+
